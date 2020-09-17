@@ -18,15 +18,28 @@ class UserController < ApplicationController
   end
 
   def create
-    user = User.new user_params.validate!
-    pass = user_params.validate!["password"]
-    user.password = pass if pass
+    begin
+      unless params[:password] == params[:confirm_password]
+        raise "Password do not match"
+      end
 
-    if user.save
+      user = User.new user_params.validate!
+      pass = user_params.validate!["password"]
+
+      unless pass
+        raise "Invalid password"
+      end
+
+      user.password = pass
+
+      unless user.save
+        raise "Could not create User!"
+      end
+
       session[:user_id] = user.id
       redirect_to "/", flash: {"success" => "Created User successfully."}
-    else
-      flash[:danger] = "Could not create User!"
+    rescue exception
+      flash[:danger] = exception.to_s
       render "new.slang"
     end
   end

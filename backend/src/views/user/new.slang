@@ -12,6 +12,8 @@ form action="/registration" method="post"
     input.form-control type="email" name="email" placeholder="Email"
   .form-group
     input.form-control type="password" name="password" placeholder="Password"
+  .form-group
+    input.form-control type="password" name="confirm_password" placeholder="Confirm Password"
   button.btn.btn-success.btn-sm type="submit"
     | Register
 <hr/>
