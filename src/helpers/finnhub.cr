@@ -1,43 +1,28 @@
-require "http"
+require "http/client"
+require "json"
 
 module Finnhub
 
     class Utils
 
-        def initialize
-            @host = HTTP::Client.new("https://finnhub.io")
+        def self.price_target(symbol)
+            get_url("https://finnhub.io/api/v1/stock/price-target?symbol=#{symbol}")
         end
 
-        def price_target(symbol)
-            get("/api/v1/price_target?token=#{api_key}&symbol=#{symbol}")
+        def self.recommendations(symbol)
+            get_url("https://finnhub.io/api/v1/stock/recommendation?symbol=#{symbol}")
         end
 
-        private def get(url)
-            @host.get(url, get_headers)
+        def self.getPercentage(json, type)
+            (json[type] / (json.buy + json.sell + json.hold + json.strongBuy + json.strongSell)) * 100.0
         end
 
-        private def post(url, body)
-            @host.post(url, get_headers, body)
+        private def self.get_url(url)
+            data = HTTP::Client.get(url + "&token=bthpmc748v6rsb748n50")
+            json = JSON::Parser.new(data.body)
+            json.parse
         end
 
-        private def put(url, body)
-            @host.put(url, get_headers, body)
-        end
-
-        private def patch(url, body)
-            @host.patch(url, get_headers, body)
-        end
-
-        private def delete(url)
-            @host.delete(url, get_headers)
-        end
-
-        private def get_headers
-            api_key: String = ENV["FINNHUB_API_KEY"]
-            headers = HTTP::Headers.new
-            headers.add("X-Finnhub-Token", api_key)
-            headers
-        end
     end
 
 end
