@@ -5,26 +5,27 @@ module Finnhub
     class Utils
 
         def initialize
+            @host = HTTP::Client.new('https://finnhub.io')
         end
 
         def get(url)
-            HTTP::Client.get("http://www.example.com", get_headers)
+            @host.get(url, get_headers)
         end
 
         def post(url, body)
-            HTTP::Client.post("http://www.example.com", get_headers, body)
+            @host.post(url, get_headers, body)
         end
 
         def put(url, body)
-            HTTP::Client.put("http://www.example.com", get_headers, body)
+            @host.put(url, get_headers, body)
         end
 
         def patch(url, body)
-            HTTP::Client.patch("http://www.example.com", get_headers, body)
+            @host.patch(url, get_headers, body)
         end
 
         def delete(url)
-            HTTP::Client.delete("http://www.example.com", get_headers)
+            @host.delete(url, get_headers)
         end
 
         private def get_headers
