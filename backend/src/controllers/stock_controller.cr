@@ -1,7 +1,9 @@
+
 class StockController < ApplicationController
   getter stock = Stock.new
 
   before_action do
+    redirected
     only [:show, :edit, :update, :destroy] { set_stock }
     only [:create, :update] { same_user }
   end
@@ -67,6 +69,15 @@ class StockController < ApplicationController
       session.delete(:user_id)
       flash[:info] = "No hacks. See ya later!"
       redirect_to "/"
+      false
+    else
+      true
+    end
+  end
+
+  private def redirected
+    unless session[:user_id]
+      redirect_to "/", flash: {"danger" => "Must be authenticated"}
       false
     else
       true

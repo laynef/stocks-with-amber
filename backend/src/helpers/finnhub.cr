@@ -5,7 +5,7 @@ module Finnhub
     class Utils
 
         def initialize
-            @host = HTTP::Client.new('https://finnhub.io')
+            @host = HTTP::Client.new("https://finnhub.io")
         end
 
         def get(url)
