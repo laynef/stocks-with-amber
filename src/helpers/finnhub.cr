@@ -8,23 +8,27 @@ module Finnhub
             @host = HTTP::Client.new("https://finnhub.io")
         end
 
-        def get(url)
+        def price_target(symbol)
+            get("/api/v1/price_target?token=#{api_key}&symbol=#{symbol}")
+        end
+
+        private def get(url)
             @host.get(url, get_headers)
         end
 
-        def post(url, body)
+        private def post(url, body)
             @host.post(url, get_headers, body)
         end
 
-        def put(url, body)
+        private def put(url, body)
             @host.put(url, get_headers, body)
         end
 
-        def patch(url, body)
+        private def patch(url, body)
             @host.patch(url, get_headers, body)
         end
 
-        def delete(url)
+        private def delete(url)
             @host.delete(url, get_headers)
         end
 
