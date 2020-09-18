@@ -1,7 +1,9 @@
 require "jasper_helpers"
+require "../helpers/market_hours"
 
 class ApplicationController < Amber::Controller::Base
   include JasperHelpers
+  include MarketHours
   LAYOUT = "application.slang"
 
   def current_user
