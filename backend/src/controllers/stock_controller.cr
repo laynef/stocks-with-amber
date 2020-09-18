@@ -14,6 +14,7 @@ class StockController < ApplicationController
   end
 
   def show
+    @uuid = Random.rand
     render "show.slang"
   end
 
