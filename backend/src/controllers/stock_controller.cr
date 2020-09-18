@@ -9,7 +9,7 @@ class StockController < ApplicationController
   end
 
   def index
-    stocks = Stock.where(user_id: session[:user_id]).order(:id)
+    stocks = Stock.all
     render "index.slang"
   end
 

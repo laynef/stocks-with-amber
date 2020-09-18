@@ -19,7 +19,7 @@ export default function() {
             <h2>Recommendations</h2>
             <div className="w-100 d-flex flex-wrap">
                 {redData.slice(0, 3).map((rec, i) => (
-                    <div className="col-sm-12 col-md-6 col-lg-4 d-flex flex-column mb-3 card" key={i}>
+                    <div className="text-dark col-sm-12 col-md-6 col-lg-4 d-flex flex-column mb-3 card" key={i}>
                         <div>Date: {rec.period}</div>
                         <div>Buy: {getPercentage(rec, 'buy')}%</div>
                         <div>Sell: {getPercentage(rec, 'sell')}%</div>

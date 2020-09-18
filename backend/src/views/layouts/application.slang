@@ -10,7 +10,7 @@ html
     link rel="icon" href="/favicon.png"
     link rel="icon" type="image/x-icon" href="/favicon.ico"
 
-  - marketHours = MarketHours::Utils.is_market_hours? == false ? "bg-dark text-light" : "text-dark bg-light"
+  - marketHours = MarketHours::Utils.is_market_hours? ? "text-dark bg-light" : "bg-dark text-light"
   body class=marketHours
     nav.navbar.navbar-expand.navbar-dark.bg-primary.mb-3
       .container

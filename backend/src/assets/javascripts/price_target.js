@@ -14,7 +14,7 @@ export default function() {
     return (
         <div className="w-100">
             <h2>Price Target</h2>
-            <div className="w-100 d-flex flex-column card">
+            <div className="w-100 d-flex flex-column card text-dark">
                 <div>Date: {data.lastUpdated}</div>
                 <div>Target High: {(data.targetHigh || -1).toFixed(2)}</div>
                 <div>Target Low: {(data.targetLow || -1).toFixed(2)}</div>
