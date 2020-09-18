@@ -27,3 +27,8 @@ html
           = flash[key]
 
       .main== content
+
+      script src="/dist/main.bundle.js?id=#{@uuid}"
+
+      - if Amber.settings.auto_reload?
+        script src="/js/client_reload.js"

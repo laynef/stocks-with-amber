@@ -5,6 +5,10 @@ class ApplicationController < Amber::Controller::Base
   include JasperHelpers
   include MarketHours
   LAYOUT = "application.slang"
+  
+  before_action do 
+    only [:show, :edit, :index, :new] { uuid }
+  end
 
   def current_user
     context.current_user
@@ -17,5 +21,9 @@ class ApplicationController < Amber::Controller::Base
     else
       true
     end
+  end
+
+  private def uuid
+    @uuid = Random.rand
   end
 end

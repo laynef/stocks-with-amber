@@ -10,11 +10,14 @@ module Finnhub
         end
 
         def self.recommendations(symbol)
-            get_url("https://finnhub.io/api/v1/stock/recommendation?symbol=#{symbol}")
+            url = "https://finnhub.io/api/v1/stock/recommendation?symbol=#{symbol}"
+            response = get_url(url)
+            response.as_a
         end
 
-        def self.getPercentage(json, type)
-            (json[type] / (json.buy + json.sell + json.hold + json.strongBuy + json.strongSell)) * 100.0
+        def self.getPercentage(j, type)
+            json = j.as_h
+            ((json[type].as_i / (json["buy"].as_i + json["sell"].as_i + json["hold"].as_i + json["strongBuy"].as_i + json["strongSell"].as_i)) * 100).to_s
         end
 
         private def self.get_url(url)
