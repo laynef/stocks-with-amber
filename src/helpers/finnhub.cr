@@ -9,6 +9,10 @@ module Finnhub
             get_url("https://finnhub.io/api/v1/stock/price-target?symbol=#{symbol}")
         end
 
+        def self.quote(symbol)
+            get_url("https://finnhub.io/api/v1/quote?symbol=#{symbol}")
+        end
+
         def self.recommendations(symbol)
             url = "https://finnhub.io/api/v1/stock/recommendation?symbol=#{symbol}"
             response = get_url(url)

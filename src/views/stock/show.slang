@@ -1,7 +1,6 @@
 h1 Show Stock
 
-div id="stocks"
-
+== render(partial: "_quote.slang")
 == render(partial: "_recommendations.slang")
 == render(partial: "_price_target.slang")
 
