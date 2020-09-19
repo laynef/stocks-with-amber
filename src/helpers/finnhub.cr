@@ -25,7 +25,7 @@ module Finnhub
         end
 
         private def self.get_url(url)
-            data = HTTP::Client.get(url + "&token=bthpmc748v6rsb748n50")
+            data = HTTP::Client.get(url + "&token=" + ENV["FINNHUB_API_KEY"])
             json = JSON::Parser.new(data.body)
             json.parse
         end

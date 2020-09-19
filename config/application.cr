@@ -8,6 +8,10 @@
 # affect the behavior of the application.
 
 require "amber"
+require "dotenv"
+
+Dotenv.load
+
 require "./settings"
 require "./logger"
 require "./i18n"
